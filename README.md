@@ -216,7 +216,26 @@ django-admin.exe startproject mysite .
 <br>
 
 * Utilice ```python manage.py shell``` para agregar objetos. ¿Qué archivos se modificaron al agregar más objetos?
-
+   * Estando ya dentro del shell de Django, debemos importar el modelo
+    ```sh
+        >>> from blog.models import Post
+    ```
+   * Previamente deberíamos haber creado un post con un titulo cualquiera, por ejemplo "Another Test", se puede verificar con el siguiente comando ```Post.objects.all()```. Que nos devolvera un QuerySet, por ejemplo el siguiente.    
+   ```sh
+        <QuerySet [<Post: This is a test>, <Post: Another Test>]>
+   ```
+   * Obtenemos el objeto usuario usado en la creación del post "Another Test".
+   ```sh
+        >>> aut = Post.objects.get(title="Another Test").author
+   ```
+   * Ahora si podemos crear un modelo
+   ```sh
+        >>> Post.objects.create(author=aut, title='Test', text='hello')
+   ```
+   Finalizado el proceso, el nuevo modelo se habra guardado en la base de datos, pudiendosele realizar las correspondientes operaciones CRUD, podemos confirmar que se ha guardado con ```Post.objects.all()```, donde obtendremos un QuerySet actualizado.
+   ```sh
+        <QuerySet [<Post: This is a test>, <Post: Another Test>, <Post: Test>]]>
+   ```
 ---
 
 III. CONCLUSIONES
