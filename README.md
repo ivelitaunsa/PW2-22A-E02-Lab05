@@ -132,6 +132,34 @@ I. SOLUCIÓN DE EJERCICIOS/PROBLEMAS <br>
     ```
 * Se asigno a cada integrante una parte de la aplicación y teniendo una secuencialidad
     * Bryan
+      - Siguiendo los pasos propuestos por la página de DjangoGirls, se creo el proyecto, cambio la configuración y creo la aplicación.
+      - Después de estos pasos iniciales se definio el __modelo__ de nuestra aplicación, realizando las modificaciones al archivo models.py del blog.
+          ```python
+             ...
+             from django.utils import timezone
+             ...
+             class Post(models.Model):
+                ...
+                def publish(self):
+                    self.published_date = timezone.now()
+                    self.save()
+
+                def __str__(self):
+                    return self.title
+          ```
+       - Para que Django conozca los cambios realizados, se prepara un archivo de migración que se aplicara a la base de datos.
+         ```sh
+             python manage.py makemigrations blog
+             ...
+             python manage.py migrate blog
+          ```
+       - Continuando con el modelo, para poder agregar, editar y borrar los posts, se editó el archivo admin.py del blog.
+         ```python
+             from django.contrib import admin
+             from .models import Post
+
+             admin.site.register(Post)
+          ```
     * Franco
     * Bárbara
     * Eberth
