@@ -89,6 +89,11 @@ II. SOLUCIÓN DEL CUESTIONARIO
 <br>
 
 * ¿Qué diferencias existen entre EasyInstall, pip, y PyPM?
+| EasyInstall                         | PIP                                    | PYPM                                                           |
+|-------------------------------------|----------------------------------------|----------------------------------------------------------------|
+| Es gratuito                         | Es gratuito                            | Es de paga <br>(Necesitas una destribución Especial de python) |
+| Es el más antiguo                   | Es el reemplazo directo de EasyInstall | Está a la par con pip                                          |
+| Viene por defecto en las setuptools | Debes instalarlo manualmente           | Debes instalarlo manualmente                                   |
 <br>
 
 * En un proyecto Django que se debe ignorar para usar git. Vea: [https://github.com/django/django/blob/main/.gitignore.](https://github.com/django/django/blob/main/.gitignore) ¿Qué otros tipos de archivos se deberían agregar a este archivo?
