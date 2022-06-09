@@ -97,6 +97,31 @@ II. SOLUCIÓN DEL CUESTIONARIO
 <br>
 
 * En un proyecto Django que se debe ignorar para usar git. Vea: [https://github.com/django/django/blob/main/.gitignore.](https://github.com/django/django/blob/main/.gitignore) ¿Qué otros tipos de archivos se deberían agregar a este archivo?
+    ```ini
+    # Created by https://www.toptal.com/developers/gitignore/api/django
+    # Edit at https://www.toptal.com/developers/gitignore?templates=django
+    # Source https://www.toptal.com/developers/gitignore/
+
+    ### Django ###
+    *.log
+    *.pot
+    *.pyc
+    *~
+    __pycache__/
+    local_settings.py
+    db.sqlite3
+    db.sqlite3-journal
+    .DS_Store
+    media
+
+    # Virtual Enviromenents
+    venv/
+    ```
+    * En la carpeta static está todos los archivos que se quiera compartir de forma pública por lo que generalmente no se incluye, sim embargo dependerá mucho de las necesidades del projecto.
+    * media/ solo está asociado con el projecto ya construido por lo que lo mejor es omitirlo
+    * Las bases de datos tambien se pueden incluir si queremos armar la aplicación desde cero, si la aplicación llegara a tener la necesidad de mantener los datos pues se debe quitar del gitignore.
+    * Las carpetas y archivos de los ejecutables como los .pyc, __pycache __, .log .pot, etc. Se deben omitir ya que son la configuración personal de cada host.
+    * La mayoria de estos archivos se contruyen al momento de ejecutar de forma local la aplicación, se deberia incluir siempre una guia de uso para orientar a los usuarios
 <br>
 
 * Utilice ```python manage.py shell``` para agregar objetos. ¿Qué archivos se modificaron al agregar más objetos?
@@ -123,3 +148,5 @@ III. CONCLUSIONES
 - https://pypi.org/
 - https://pip.pypa.io/en/latest/user_guide/
 - https://packaging.python.org/en/latest/tutorials/installing-packages/
+- https://www.toptal.com/developers/gitignore/
+- https://getbootstrap.com/
