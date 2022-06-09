@@ -150,6 +150,7 @@ II. SOLUCIÓN DEL CUESTIONARIO
 <br>
 
 * ¿Qué diferencias existen entre EasyInstall, pip, y PyPM?
+<!-- Debe haber una linea entre el header y la tabla para que renderize -->
 | EasyInstall                         | PIP                                    | PYPM                                                           |
 |-------------------------------------|----------------------------------------|----------------------------------------------------------------|
 | Es gratuito                         | Es gratuito                            | Es de paga <br>(Necesitas una destribución Especial de python) |
