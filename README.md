@@ -86,6 +86,11 @@ I. SOLUCIÓN DE EJERCICIOS/PROBLEMAS <br>
 II. SOLUCIÓN DEL CUESTIONARIO
 
 * ¿Cuál es un estándar de codificación para Python? Ejemplo: Para PHP en el proyecto Pear [https://pear.php.net/manual/en/standards.php](https://pear.php.net/manual/en/standards.php)
+    * Para python tenemos [PEP8](https://legacy.python.org/dev/peps/pep-0008/).
+    * Esta definida como una GUIA de estilos de codificacion en python.
+    * Los usuarios de python llegaron a una convención para poder usar esta guía, contiene recomendaciones con el objetivo de escribir un codigo más legible. [https://ellibrodepython.com/python-pep8](https://ellibrodepython.com/python-pep8)
+    * Tiene una función similar a typescript solo que no tiene una extencion propia y sigue trabajando con la extensión .py.
+
 <br>
 
 * ¿Qué diferencias existen entre EasyInstall, pip, y PyPM?
@@ -150,3 +155,5 @@ III. CONCLUSIONES
 - https://packaging.python.org/en/latest/tutorials/installing-packages/
 - https://www.toptal.com/developers/gitignore/
 - https://getbootstrap.com/
+- https://legacy.python.org/dev/peps/pep-0008/
+- https://ellibrodepython.com/python-pep8
