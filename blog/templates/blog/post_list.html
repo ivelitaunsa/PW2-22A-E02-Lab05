@@ -4,12 +4,19 @@
 {% block content %}
 
   {% for post in posts %}
-    <article>
-      <h2><a href="{% url 'post_detail' post.id %}">{{post.title}}</a></h2>
-      <h3>Author: {{post.author}}</h3>
-      <span>Create on {{post.created_date|date:'M d Y'}}</span>
-      <p>{{post.text|truncatechars:200}}</p>
-
+    <article class="p-3">
+      <div class="card card-body bg-light">
+        <div class="row">
+          <div class="col-3">
+            <h2>{{post.author}}</h2>
+          </div>
+          <div class="col-9">
+            <h2><a href="{% url 'post_detail' post.id %}">{{post.title}}</a></h2>
+            <span>Create on {{post.created_date|date:'M d Y'}}</span>
+            <p>{{post.text|truncatechars:200}}</p>
+          </div>
+        </div>
+      </div>
     </article>
   {% endfor %}
 
