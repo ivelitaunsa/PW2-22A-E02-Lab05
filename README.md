@@ -232,7 +232,7 @@ django-admin.exe startproject mysite .
    ```sh
         >>> Post.objects.create(author=aut, title='Test', text='hello')
    ```
-   Finalizado el proceso, el nuevo modelo se habra guardado en la base de datos, pudiendosele realizar las correspondientes operaciones CRUD, podemos confirmar que se ha guardado con ```Post.objects.all()```, donde obtendremos un QuerySet actualizado.
+   Finalizado el proceso, el nuevo modelo se habra guardado en la base de datos, pudiendosele realizar las correspondientes operaciones CRUD, podemos confirmar que se ha guardado con ```Post.objects.all()```, donde obtendremos un QuerySet actualizado. El archivo modificado es el de db.sqlite3
    ```sh
         <QuerySet [<Post: This is a test>, <Post: Another Test>, <Post: Test>]]>
    ```
