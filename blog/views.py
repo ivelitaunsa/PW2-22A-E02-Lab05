@@ -4,6 +4,8 @@ from .forms import PostForm
 # Import the Post model
 from django.utils import timezone
 from blog.models import Post
+# Import redirect module
+from django.shortcuts import redirect
 
 # Create your views here.
 #nueva funcion

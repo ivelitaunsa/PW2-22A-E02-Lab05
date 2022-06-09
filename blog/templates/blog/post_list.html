@@ -6,7 +6,7 @@
   {% for post in posts %}
     <article>
       <h2><a href="{% url 'post_detail' post.id %}">{{post.title}}</a></h2>
-      <h3>Autor: {{post.author}}</h3>
+      <h3>Author: {{post.author}}</h3>
       <span>Create on {{post.created_date|date:'M d Y'}}</span>
       <p>{{post.text|truncatechars:200}}</p>
 
