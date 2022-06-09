@@ -1,0 +1,8 @@
+{% extends 'blog/layout.html' %}
+
+{% block content %}
+  <h2><a href="{% url 'post_detail' post.id %}">{{post.title}}</a></h2>
+  <h3>Autor: {{post.author}}</h3>
+  <span>Published on {{post.published_date}}</span>
+  <p>{{post.text}}</p>
+{% endblock  %}
