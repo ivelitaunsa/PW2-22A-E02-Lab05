@@ -262,3 +262,4 @@ III. CONCLUSIONES
 - https://getbootstrap.com/
 - https://legacy.python.org/dev/peps/pep-0008/
 - https://ellibrodepython.com/python-pep8o
+- https://docs.djangoproject.com/en/4.0/topics/auth/customizing/
