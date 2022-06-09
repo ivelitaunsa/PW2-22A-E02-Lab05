@@ -80,7 +80,63 @@
 ---
 
 I. SOLUCIÓN DE EJERCICIOS/PROBLEMAS <br>
-    
+* Despues de clonar el repositorio, tenemos que instalar todas las dependencias
+    * Virtual enviroment: Asignado nombre a venv
+        ```sh
+        # On linux/On Windows
+        python3 -m virtualenv venv
+        python -m virtualenv venv
+        # or
+        vitualenv -p python3 venv
+        vitualenv -p python venv
+        ```
+        ```sh
+        ├── README.md
+        ├── blog
+        ├── manage.py
+        ├── mysite
+        ├── requirements.txt
+        └── venv
+        ```
+    * Luego activamos el entorno virtual e instalamos django con requirements.tct
+        ```sh
+        # On linux
+        source ./venv/bin/activate
+        # On Windows
+        .\venv\Scripts\activate
+        ```
+        ```sh
+        pip install -r requirements.txt
+        ```
+* Si está viendo para testear debe antes incluir los modelos de models.py en la base de datos (Por defecto dbs.sqlite3) para crear las tablas, una vez eso hecho puede correr la aplicación. Si quiere ver el desarrollo puede saltarse a la siguiente parte.
+    ```sh
+    # Linux
+    python3 manage.py migrate
+
+    # Windows
+    python manage.py migrate
+    ```
+    * Cree y acceda como superusuario activo para poder crear posts y tener acceso a la vista de admin en 'localhost:8000/admin.'
+    ```sh
+    # Creando superusuario
+    python manage.py createsuperuser
+    ```
+    ```sh
+    Username (leave blank to use '******'): ****** 
+    Email address: ******@******
+    Password: 
+    Password (again): 
+    This password is entirely numeric.
+    Bypass password validation and create user anyway? [y/N]: y
+    Superuser created successfully.
+    ```
+* Se asigno a cada integrante una parte de la aplicación y teniendo una secuencialidad
+    * Bryan
+    * Franco
+    * Bárbara
+    * Eberth
+    * Italo
+<!-- No quitar el espacio de este comentario puedes escribir hasta arriba-->
 ---
 
 II. SOLUCIÓN DEL CUESTIONARIO
@@ -126,6 +182,7 @@ II. SOLUCIÓN DEL CUESTIONARIO
     * media/ solo está asociado con el projecto ya construido por lo que lo mejor es omitirlo
     * Las bases de datos tambien se pueden incluir si queremos armar la aplicación desde cero, si la aplicación llegara a tener la necesidad de mantener los datos pues se debe quitar del gitignore.
     * Las carpetas y archivos de los ejecutables como los .pyc, __pycache __, .log .pot, etc. Se deben omitir ya que son la configuración personal de cada host.
+    * Para nuestro projecto se sigue manteniendo la opcion de ignorar el venv ya que esto tiene configuraciones diferentes entre windows y basados en unix. El archivo requirements.txt es necesario por si nuestro projecto necesita tanto los modulos como las dependencias sin hacerlas una por una.
     * La mayoria de estos archivos se contruyen al momento de ejecutar de forma local la aplicación, se deberia incluir siempre una guia de uso para orientar a los usuarios
 <br>
 
