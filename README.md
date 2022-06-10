@@ -134,6 +134,17 @@ I. SOLUCIÓN DE EJERCICIOS/PROBLEMAS <br>
     * Bryan
     * Franco
     * Bárbara
+      - Luego vimos las vistas en Django, en las View o vistas es donde ponemos la lógica de nuestra app, las colocamos en views.py.
+      - En este archivo, agregamos una función, llamada post_list la cual recibe request y retorna una función render que reproduce blog/post_list.html.
+          ```python
+             ...
+             from django.shortcuts import render
+                ...
+                def post_list(request):
+                    return render(request, 'blog/post_list.html', {})
+          ```
+       - Luego de guardar el archivo, visitamos ->  http://127.0.0.1:8000/ 
+       - Si visitamos podemos ver que aún existe un error, el cual solucionaremos en los siguientes pasos.
     * Eberth
     * Italo
 <!-- No quitar el espacio de este comentario puedes escribir hasta arriba-->
