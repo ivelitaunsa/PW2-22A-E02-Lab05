@@ -135,6 +135,34 @@ I. SOLUCIÓN DE EJERCICIOS/PROBLEMAS <br>
     ```
 * Se asigno a cada integrante una parte de la aplicación y teniendo una secuencialidad
     * Bryan
+      - Siguiendo los pasos propuestos por la página de DjangoGirls, se creo el proyecto, cambio la configuración y creo la aplicación.
+      - Después de estos pasos iniciales se definio el __modelo__ de nuestra aplicación, realizando las modificaciones al archivo models.py del blog.
+          ```python
+             ...
+             from django.utils import timezone
+             ...
+             class Post(models.Model):
+                ...
+                def publish(self):
+                    self.published_date = timezone.now()
+                    self.save()
+
+                def __str__(self):
+                    return self.title
+          ```
+       - Para que Django conozca los cambios realizados, se prepara un archivo de migración que se aplicara a la base de datos.
+         ```sh
+             python manage.py makemigrations blog
+             ...
+             python manage.py migrate blog
+          ```
+       - Continuando con el modelo, para poder agregar, editar y borrar los posts, se editó el archivo admin.py del blog.
+         ```python
+             from django.contrib import admin
+             from .models import Post
+
+             admin.site.register(Post)
+          ```
     * Franco
     * Bárbara
     * Eberth
@@ -223,7 +251,6 @@ II. SOLUCIÓN DEL CUESTIONARIO
     * Esta definida como una GUIA de estilos de codificacion en python.
     * Los usuarios de python llegaron a una convención para poder usar esta guía, contiene recomendaciones con el objetivo de escribir un codigo más legible. [https://ellibrodepython.com/python-pep8](https://ellibrodepython.com/python-pep8)
     * Tiene una función similar a typescript solo que no tiene una extencion propia y sigue trabajando con la extensión .py.
-
 <br>
 
 * ¿Qué diferencias existen entre EasyInstall, pip, y PyPM?
@@ -265,7 +292,26 @@ II. SOLUCIÓN DEL CUESTIONARIO
 <br>
 
 * Utilice ```python manage.py shell``` para agregar objetos. ¿Qué archivos se modificaron al agregar más objetos?
-
+   * Estando ya dentro del shell de Django, debemos importar el modelo
+    ```sh
+        >>> from blog.models import Post
+    ```
+   * Previamente deberíamos haber creado un post con un titulo cualquiera, por ejemplo "Another Test", se puede verificar con el siguiente comando ```Post.objects.all()```. Que nos devolvera un QuerySet, por ejemplo el siguiente.    
+   ```sh
+        <QuerySet [<Post: This is a test>, <Post: Another Test>]>
+   ```
+   * Obtenemos el objeto usuario usado en la creación del post "Another Test".
+   ```sh
+        >>> aut = Post.objects.get(title="Another Test").author
+   ```
+   * Ahora si podemos crear un modelo
+   ```sh
+        >>> Post.objects.create(author=aut, title='Test', text='hello')
+   ```
+   Finalizado el proceso, el nuevo modelo se habra guardado en la base de datos, pudiendosele realizar las correspondientes operaciones CRUD, podemos confirmar que se ha guardado con ```Post.objects.all()```, donde obtendremos un QuerySet actualizado. El archivo modificado es el de db.sqlite3
+   ```sh
+        <QuerySet [<Post: This is a test>, <Post: Another Test>, <Post: Test>]]>
+   ```
 ---
 
 III. CONCLUSIONES
@@ -312,3 +358,4 @@ III. CONCLUSIONES
 - https://getbootstrap.com/
 - https://legacy.python.org/dev/peps/pep-0008/
 - https://ellibrodepython.com/python-pep8
+- https://docs.djangoproject.com/en/4.0/topics/auth/customizing/
