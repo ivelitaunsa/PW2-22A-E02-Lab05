@@ -108,6 +108,8 @@ I. SOLUCIÓN DE EJERCICIOS/PROBLEMAS <br>
         ```sh
         pip install -r requirements.txt
         ```
+    * NOTA: COMO EN EL GITIGNORE SE INCLUYÓ LA BASE DE DATOS EL BLOG ESTARÁ VACIO Y NO MOSTRARÁ NINGUN POST, necesita registrase para empezar a probar la aplicación.
+
 * Si está viendo para testear debe antes incluir los modelos de models.py en la base de datos (Por defecto dbs.sqlite3) para crear las tablas, una vez eso hecho puede correr la aplicación. Si quiere ver el desarrollo puede saltarse a la siguiente parte.
     ```sh
     # Linux
@@ -136,6 +138,80 @@ I. SOLUCIÓN DE EJERCICIOS/PROBLEMAS <br>
     * Bárbara
     * Eberth
     * Italo
+        * Creamos la carpeta templates dentro de blog y colocamos un layout.html que será el principal y que se compartira con las otras plantillas, igualmente se incluyó bootstrap en una etiqueta link
+        ```sh
+        ├── templates
+        └── blog
+            ├── layout.html
+            ├── partials
+            │       └── _navbar.html
+            ├── post_detail.html
+            ├── post_edit.html
+            └── post_list.html
+        ```
+        ```html
+        {% load static %}
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM        +OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        </head>
+
+        <title>My blog</title>
+        </head>
+        <body>
+
+            {% include 'blog/partials/_navbar.html' %}
+
+            <div class="container p-4">
+            {% block content %}
+            {% endblock  %}
+            </div>
+
+        </body>
+        </html>
+        ```
+        * También se tuvo que modificar post_list() para que devolviera los post creados a post_list.html
+        ```python
+        def post_list(request):
+            posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+            return render(request, 'blog/post_list.html', {'posts': posts}
+        ```
+        * Se incluyó tambien una carpeta static donde colocamos los estilos personalizados de nuestro blog
+        ```sh
+        ├── static
+        │   └── css
+        │       └── styles.css
+        ```
+        * Para terminar tambien se creo una carpeta partials dentro de templates donde creamos la barra de navegación como _navbar.html
+        ```html
+        <nav class="navbar navbar-expand-lg bg-black navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">MI BLOG</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"      aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link active" aria-current="page" href="/">Blogs</a>
+                {% if user.is_authenticated %}
+                <a class="nav-link active" href="/admin">Admin</a>
+                {% endif %}
+                {% if user.is_authenticated %}
+                  <a class="btn btn-primary" href="{% url 'post_new' %}">Crear Post</a>
+                {% endif %}
+        
+              </div>
+            </div>
+        </div>
+        </nav>
+        ```
+
 <!-- No quitar el espacio de este comentario puedes escribir hasta arriba-->
 ---
 
