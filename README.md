@@ -166,6 +166,84 @@ I. SOLUCIÓN DE EJERCICIOS/PROBLEMAS <br>
     * Franco
     * Bárbara
     * Eberth
+      
+      - Siguiendo con el tutorial, lo que haremos ahora es crear la vista detallada para eso editaremos primero blog/urls.py, crearemos una URL para que dirija a Django hacia una vista llamada post_detail, que mostrará una entrada de blog completa.
+        ```python
+               from django.urls import path
+               from . import views
+
+               urlpatterns = [
+                   path('', views.post_list, name='post_list'),
+                   path('post/<int:pk>/', views.post_detail, name='post_detail'),
+                   ] 
+        ```
+      - En blog/urls.py creamos una regla de URL denominada post_detail que hace referencia a una vista llamada view.post_detail, por esto crearemos una función llamada post_detail de vista en blog/views.py.
+      - En caso de que no exista el post, mostraremos un error Page Not Found 404, para eso primero añadiremos en el archivo blog/views.py la siguiente línea de código, cerca de los otros import.
+        ```python
+              from django.shortcuts import render, get_object_or_404
+        ```
+      - Y al final del archivo añadiremos nuestra view, la cual dirigira hacia una plantilla post_detail.html. 
+        ```python
+              def post_detail(request, pk):
+                  post = get_object_or_404(Post, pk=pk)
+                  return render(request, 'blog/post_detail.html', {'post': post})
+        ```
+      - La última función que agregaremos a nuestro sitio web será un formulario para poder crear y editar posts, para eso crearemos un archivo blog/forms.py, es importante que el archivo tenga este nombre, ya que como cada parte importante de Django, los formularios tienen su propio archivo.
+      - En el archivo colocaremos el siguiente código, el cual le dirá a Django que este formulario es un ModelForm, y que tendra los campos title y text. 
+        ```python
+             from django import forms
+
+             from .models import Post
+
+             class PostForm(forms.ModelForm):
+                 class Meta:
+                    model = Post
+                    fields = ('title', 'text',)
+        ```
+      - Después, agregaremos la siguiente línea a blog/urls.py, esta hará que post/new se dirija a views.post_new
+        ```python
+              path('post/new', views.post_new, name='post_new'),
+        ```
+      - Ahora crearemos la vista a la que nos referimos anteriormente en urls.py, primero colocaremos la siguiente línea en blog/views.py cerca de los import para ir a post_detail cuando creemos la nueva publicación.
+        ```python
+              from django.shortcuts import redirect
+        ```
+      - Después de hacer esto, crearemos la función post_new en blog/views, se encargará de dirigir hacia blog/post_edit.html, validar el formulario y guardar el posts creado en el formulario.
+        ```python
+              def post_new(request):
+                  if request.method == "POST":
+                     form = PostForm(request.POST)
+                     if form.is_valid():
+                        post = form.save(commit=False)
+                        post.author = request.user
+                        post.published_date = timezone.now()
+                        post.save()
+                        return redirect('post_detail', pk=post.pk)
+                   else:
+                        form = PostForm()
+                   return render(request, 'blog/post_edit.html', {'form': form})
+        ```
+      - Para terminar el formulario, agregaremos una función para editar, para eso primero editaremos blog/urls.py con la siguiente línea, la cual dirigira la URL 'post/<int:pk>/edit/' hacia views.post_edit que crearemos después.
+        ```python
+              path('post/<int:pk>/edit/', views.post_edit, name='post_edit'),
+        ```
+      - Como mencionamos anteriormente añadiremos la función post_edit a blog/views.py, está rehusará la plantilla blog/templates/blog/post_edit.html ya que nos dirigira ahí para poder editar nuestro formulario y guardar los cambios.
+        ```python
+              def post_edit(request, pk):
+                  post = get_object_or_404(Post, pk=pk)
+                  if request.method == "POST":
+                     form = PostForm(request.POST, instance=post)
+                     if form.is_valid():
+                        post = form.save(commit=False)
+                        post.author = request.user
+                        post.published_date = timezone.now()
+                        post.save()
+                        return redirect('post_detail', pk=post.pk)
+                  else:
+                      form = PostForm(instance=post)
+                  return render(request, 'blog/post_edit.html', {'form': form})
+        ```
+       
     * Italo
         * Creamos la carpeta templates dentro de blog y colocamos un layout.html que será el principal y que se compartira con las otras plantillas, igualmente se incluyó bootstrap en una etiqueta link
         ```sh
@@ -358,4 +436,7 @@ III. CONCLUSIONES
 - https://getbootstrap.com/
 - https://legacy.python.org/dev/peps/pep-0008/
 - https://ellibrodepython.com/python-pep8
+<<<<<<< HEAD
 - https://docs.djangoproject.com/en/4.0/topics/auth/customizing/
+=======
+>>>>>>> origin/eazurin
