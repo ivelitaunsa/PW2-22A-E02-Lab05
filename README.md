@@ -133,6 +133,27 @@ I. SOLUCIÓN DE EJERCICIOS/PROBLEMAS <br>
 * Se asigno a cada integrante una parte de la aplicación y teniendo una secuencialidad
     * Bryan
     * Franco
+        - Redirigimos hacia blog.urls todo lo que entre a 'http://127.0.0.1:8000/' , donde se buscaran mas instrucciones.
+        ```python
+        from django.contrib import admin
+        from django.urls import path, include
+
+        urlpatterns = [
+            path('admin/', admin.site.urls),
+            path('', include('blog.urls')),
+        ]
+        ```
+        - Creamos urls.py dentro de blogs , importamos path y views, y asociamos view llamada post_list a la URL raíz
+        ```python
+        from django.urls import path
+        from . import views
+
+        urlpatterns = [
+           path('', views.post_list, name='post_list'),
+        ]
+        ```
+
+
     * Bárbara
     * Eberth
     * Italo
