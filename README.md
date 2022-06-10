@@ -80,6 +80,7 @@
 ---
 
 I. SOLUCIÓN DE EJERCICIOS/PROBLEMAS <br>
+* Ver tutorial de CRUD hecho para este laboratorio: https://youtu.be/c3g_yYMBx-8
 * Despues de clonar el repositorio, tenemos que instalar todas las dependencias
     * Virtual enviroment: Asignado nombre a venv
         ```sh
