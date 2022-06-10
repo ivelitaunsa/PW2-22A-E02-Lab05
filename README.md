@@ -164,6 +164,27 @@ I. SOLUCIÓN DE EJERCICIOS/PROBLEMAS <br>
              admin.site.register(Post)
           ```
     * Franco
+        - Redirigimos hacia blog.urls todo lo que entre a 'http://127.0.0.1:8000/' , donde se buscaran mas instrucciones.
+        ```python
+        from django.contrib import admin
+        from django.urls import path, include
+
+        urlpatterns = [
+            path('admin/', admin.site.urls),
+            path('', include('blog.urls')),
+        ]
+        ```
+        - Creamos urls.py dentro de blogs , importamos path y views, y asociamos view llamada post_list a la URL raíz
+        ```python
+        from django.urls import path
+        from . import views
+
+        urlpatterns = [
+           path('', views.post_list, name='post_list'),
+        ]
+        ```
+
+
     * Bárbara
       - Luego vimos las vistas en Django, en las View o vistas es donde ponemos la lógica de nuestra app, las colocamos en views.py.
       - En este archivo, agregamos una función, llamada post_list la cual recibe request y retorna una función render que reproduce blog/post_list.html.
