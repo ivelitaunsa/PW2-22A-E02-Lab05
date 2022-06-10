@@ -268,7 +268,27 @@ II. SOLUCIÓN DEL CUESTIONARIO
 ---
 
 III. CONCLUSIONES
-
+* Primero el archivo pyvenv.cfg
+    ```ini
+    # The host is WSL-UBUNTU-22.04 for Windows 10
+    home = /usr
+    implementation = CPython
+    version_info = 3.10.4.final.0
+    virtualenv = 20.14.1
+    include-system-site-packages = false
+    base-prefix = /usr
+    base-exec-prefix = /usr
+    base-executable = /usr/bin/python3
+    ```
+* Primero con respecto a la base de datos, es la primera vez que se aprende a usar sqilite3,  desde antes ya sabemos usar mariadb (Mysql) pero este es una nuevo gestor. Aún así es posible que mejor sea usar una de estas otras base de datos.
+<br>
+* Toda la construcción de la aplicación es una secuencialidad que ayuda a que mantengamos un orden y evitar confusiones al momento de manejar varios archivos 
+<br>
+* Por ahora solo hemos creado un modelo basado en una guía, mas adelante probablemente se tenga que crear modelos más personalizados para incluir un registro de usuarios y permitir la eliminacion de registros sin la necesidad de entrar al /admin
+<br>
+* Solo se vio de forma superficial bootstrap, se tendra que profundizar para facilitar la presonalización de las vistas en las páginas web.
+<br>
+* Más edelante se puede llenar de más contenido a la carpeta static y tambien se podrá agregar una carpeta para los archivos de media.
 ---
 ## RETROALIMENTACIÓN GENERAL
 
